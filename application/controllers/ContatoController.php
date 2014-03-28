@@ -7,15 +7,19 @@ class ContatoController extends Zend_Controller_Action
     {
         $form = new Application_Form_ContatoForm();
         
-        if($this->getRequest()->isPost() and $form->isValid($this->getRequest()->getPost())){
-            $values = $form->getValues();
-            
-            $model = new Application_Model_DbTable_Contato();
-            
-            $model->createRow($values)->save();
-            
+        if($this->getRequest()->isPost()){
+            if($form->isValid($this->getRequest()->getPost())){
+                $valores = $form->getValues();
+
+                echo "<pre>";
+                var_dump($valores);
+                echo "</pre>";
+
+                exit;
+            }
         }
-        
+
+
         $this->view->form = $form;
     }
     
